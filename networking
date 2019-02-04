@@ -1,0 +1,67 @@
+Packages:
+yum install bind-utils nmap nc
+
+Set mhostname:
+hostnamectl set-hostname hostname.domain
+
+Ip configuration:
+ifconfig -a
+ip a
+ip addr show
+ip addr add 192.168.1.1/24 dev eth0
+ip addr del 192.168.1.1/24 dev eth0
+ip link set eth0 up
+
+Ports:
+netstat -tulpn
+netstat -neopa
+netstat -an | grep LISTEN
+
+Routing:
+traceroute
+netstat –r
+netstat –rnf inet # Display IPv4 routing tabl
+ip route
+route -n
+
+Add Route:
+route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0 # Add route
+ip route add default via 192.168.1.1 dev eth0
+route del 192.56.76.0
+sysctl net.inet.ip.forwarding=1 # Same as /etc/sysconfig to add forwarding
+
+Route operations:
+ip route replace 192.168.1.0/24 dev eth0
+
+DNS Lookup:
+nslookup hostName
+dig hostName
+dig www.google.com IPAddress
+dig +short www.google.com
+
+NetCat commands:
+nc -l -p 22
+nc 192.168.178.55 22
+SSH-2.0-OpenSSH_7.4
+
+Nmap commands:
+nmap 192.168.1.1
+nmap 192.168.1.0/24
+nmap -iL ipList.txt
+nmap -p 22 192.168.1.1
+nmap -p 1-100 192.168.1.1
+nmap -sT 192.168.1.1 # Scan using TCP connect
+nmap -sS 192.168.1.1 # SYN
+nmap -sU -p 123,161,162 192.168.1.1 # UDP scan
+nmap -A 192.168.1.1 # Detect OS and services
+nmap -sV 192.168.1.1
+nmap -sV --version-intensity 5 192.168.1.1
+nmap -oN outputfile.txt 192.168.1.1
+nmap -oG outputfile.txt 192.168.1.1
+nmap -sV -sC 192.168.1.1
+nmap --script-help=ssl-heartbleed
+nmap –sU –A –PN –n –pU:19,53,123,161 –script=ntp-monlist,dns-recursion,snmp-sysdescr 192.168.1.0/24
+nmap --script=http-title 192.168.178.0/24
+nmap --script=http-enum 192.168.178.0/24
+nmap -sV -p 443 --script=ssl-heartbleed 192.168.1.0/24
+nmap --script=asn-query,whois,ip-geolocation-maxmind 192.168.1.0/24

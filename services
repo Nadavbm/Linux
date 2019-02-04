@@ -1,0 +1,50 @@
+SystemCTL:
+
+Display running services:
+systemctl -t service
+
+List all services:
+systemctl list-unit-files -t service
+
+systemctl start serviceName
+systemctl restart serviceName
+systemctl disable serviceName
+systemctl stop serviceName
+
+Other system ctl commands:
+systemctl show service # Properties of a service
+systemctl -H host status network # Run systemctl remotely
+systemctl list-unit-files –type=service # (or) ls - list services
+
+System services:
+chkconfig --list
+chkconfig serviceName off
+chkconfig serviceName –add
+
+Service control:
+List services:
+service --status-all
+
+Services operations:
+service serviceName start
+service serviceName status
+service serviceName stop
+
+Remove service:
+update-rc.d -f apache2 remove
+
+Add service:
+update-rc.d apache2 defaults
+
+Startup configuration and shutdown - start to load kill to shutdown:
+update-rc.d apache2 defaults [START] [KILL]
+update-rc.d mysql defaults 10 10
+
+Set runLevel to start and kill service:
+update-rc.d apache2 start 10 2 3 4 5 . stop 90 0 1 6 .
+
+Show system messages and logs:
+journalctl # Show all collected log messages
+journalctl -u network.service # See network service messages
+journalctl -f # Follow messages as they appear
+journalctl -k # Show only kernel messages
