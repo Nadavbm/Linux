@@ -1,21 +1,29 @@
-Basic:
+System performance and monitoring:
+
 top
 ps aux
-
+dmesg | more
+watch "dmesg | tail -20"
 ps u | sort -k 1 -r | head -5           # highest CPU & Memory utilization by processes
 ps -eo pcpu,args | sort -k 1 -r | head -8   # CPU usage for the specific command
 ps -auxf | sort -nr -k 3 | head -10     # processes for all users
+vmstat 5                                # statistics about system processes and specs
+vmstat 1 5                              # update in every 5 second and reported every 1 second.
+mpstat                                  # Global Average Activities of all CPUs
+mpstat -P ALL                           # all CPUs
+mpstat -P ALL 2 4                       # CPU usage for 4 times, each after 2 seconds
 
 Performance monitoring packages:
-yum install sysstat htop nmon glances perf
+yum install sysstat htop nmon glances perf dstat tiptop
 
 iostat                                  # Performance stat
 iostat -c                               # CPU
 iostat -xd                              # extended I/O statistic for device only
 iostat -c 2 2                           # cpu and device statistics with delay
-iostat -d sda7 sda6 2 2                 #
+iostat -d sda1 sda2 2 2                 # sda1 and 2 with 2 sec interval and 2 times reports
 iostat -j ID mmcbkl0 sda6 -x -m 2 2     #
-iostat -p                               #
+iostat -p                               # Block devices
+iostat -N                               # Monitor LVM
 
 sar [option] [-o filename] [-f filename] [interval] [count]
 sar -u 2 3                              # CPU activity
@@ -23,7 +31,7 @@ sar -P ALL 1 1                          # Particular CPU
 sar -r 1 3                              # Memory usage
 sar -W 1 3                              # Swapping activity
 sar -I XALL 2 10                        # Check CPU bottleneck
-sar –u –f /var/log/sa/sa??  # Get log files 
+sar –u –f /var/log/sa/sa??  # Get log files
 
 perf stat -a -- sleep 10                # Measure perf for 10 sec
 perf stat cp -r Documents/ Docs         # Copy it to docs
@@ -31,6 +39,8 @@ perf stat -p 2087                       # CPU by PID
 perf record -e cycles:u -a -- sleep 5   # Collect Sample on-CPU user instructions
 perf report                             # Report
 
+dstat -c --top-cpu -dn --top-mem        # dstat tool
+
 glances -s
-glances -c @server
-glances -w
+glances -c @server                      # glances remote check
+glances -w                               # Web interface
