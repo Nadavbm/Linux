@@ -1,50 +1,34 @@
-SystemCTL:
+Services control:
 
-Display running services:
-systemctl -t service
-
-List all services:
-systemctl list-unit-files -t service
-
+systemctl -t service                          # Display running services
+systemctl list-unit-files -t service          # List all services
 systemctl start serviceName
 systemctl restart serviceName
 systemctl disable serviceName
 systemctl stop serviceName
+systemctl show service                        # Properties of a service
+systemctl -H host status network              # Run systemctl remotely
+systemctl list-unit-files –type=service       # (or) ls - list services
 
-Other system ctl commands:
-systemctl show service # Properties of a service
-systemctl -H host status network # Run systemctl remotely
-systemctl list-unit-files –type=service # (or) ls - list services
+chkconfig --list                              # List All Services
+chkconfig serviceName off                     # Stop service
+chkconfig serviceName –add                    # Add service
+chkconfig --level 35 serviceName on           # Start a Particular Service on Run Levels
+chkconfig --list | grep 5:on                  # Check Which Services are On/Off
+chkconfig --level 3 postfix off               # Stop a Particular Service on Run Levels
 
-System services:
-chkconfig --list
-chkconfig serviceName off
-chkconfig serviceName –add
-
-Service control:
-List services:
-service --status-all
-
-Services operations:
+service --status-all                          # List All Services
 service serviceName start
 service serviceName status
 service serviceName stop
 
-Remove service:
-update-rc.d -f apache2 remove
+update-rc.d -f serviceName remove             # Remove service
+update-rc.d serviceName defaults              # Add service
+update-rc.d serviceName defaults [START] [KILL]   # Configure start-up and shutdown
+update-rc.d mysql defaults 10 10              # Start and Kill
+update-rc.d serviceName start 10 2 3 4 5 . stop 90 0 1 6 .    # Set run-Level start\kill
 
-Add service:
-update-rc.d apache2 defaults
-
-Startup configuration and shutdown - start to load kill to shutdown:
-update-rc.d apache2 defaults [START] [KILL]
-update-rc.d mysql defaults 10 10
-
-Set runLevel to start and kill service:
-update-rc.d apache2 start 10 2 3 4 5 . stop 90 0 1 6 .
-
-Show system messages and logs:
-journalctl # Show all collected log messages
-journalctl -u network.service # See network service messages
-journalctl -f # Follow messages as they appear
-journalctl -k # Show only kernel messages
+journalctl                                    # Show all collected log messages
+journalctl -u network.service                 # See network service messages
+journalctl -f                                 # Follow messages as they appear
+journalctl -k                                 # Show only kernel messages
