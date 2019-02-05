@@ -1,0 +1,69 @@
+# Centos package manager:
+yum update                        # Upgrade distro
+yum install <package>             # Install <package>
+yum list available                # List yum packages
+yum list installed
+yum list all
+yum list kernel                   # Kernel packages
+yum provides “*bin/top”           # Find packages that provide the queried file
+yum search <package>              # Search by package name
+yum updateinfo security
+yum repoinfo rhel-7-server-rpms   # enables packages info
+yum repo-pkgs my-rpms list        # Work with packages in a particular repository *
+yum history list                  # View and use yum transactions
+yum clean packages                # Clear out cached package data
+yum clean all
+yum reinstall <package>
+
+
+rpm -ivh {rpm-file}	              # Install the package
+rpm -Uvh {rpm-file}	              # Upgrade package
+rpm -ev {package}	                # Erase/remove/ an installed package
+rpm -ev --nodeps {package}	      # Erase/remove/ an installed package without checking for dependencies	rpm -ev --nodeps mozilla-mail
+rpm -qa	                          # Display list all installed packages
+rpm -qa | less
+rpm -qi {package}	                # Display installed information along with package version and short description
+rpm -qf {/path/to/file}	          # Find out what package a file belongs to i.e. find what package owns the file
+rpm -qc {pacakge-name}	          # Display list of configuration file(s) for a package
+rpm -qcf {/path/to/file}	        # Display list of configuration files for a command
+rpm -qa --last	                  # Display list of all recently installed RPMs
+rpm -qa --last | less
+rpm -qpR {.rpm-file}
+rpm -qR {package}	                # Find out what dependencies a rpm file has
+
+# Debian package manager:
+apt list --installed
+apt-get install <package>
+apt-get remove <package>          # Remove files installed by <package>
+apt-get purge <package>           # Remove <package> and all the files it did create
+apt-get upgrade                   # Upgrade all packages
+apt-get install <package>         # Upgrade an install package
+apt-get dist-upgrade              # Upgrade distribution
+apt-cache search <package>        # Check if there is such a package name in the repos
+apt-cache policy <package>        # Check which repos in which order provide the package
+apt-cache clean                   # Remove all downloaded .debs
+apt-mark showauto                 # List all automatically installed packages
+apt-mark showmanual
+apt-mark showhold
+apt-get install apt-file          # File to Package lookup
+apt-file update
+apt-file search <some file>
+Install only Debian Security Updates:
+grep -h '^deb.*security' /etc/apt/sources.list /etc/apt/sources.list.d/* >/tmp/b && \
+apt-get dist-upgrade -o Dir::Etc::SourceList=/tmp/b -o Dir::Etc::sourceparts=/nonexistingdir && \
+rm /tmp/b
+
+DPKG commands:
+dpkg -l	                          # List all installed packages
+dpkg -r <package>	                # Remove/Delete an installed package except configuration files
+dpkg -P <package>	                # Remove/Delete everything including configuration files
+dpkg -S /etc/fstab                # Resolve file to package
+dpkg -L passwd                    # Print all files of a package - provided files
+dpkg -c passwd                    # Print all files of a package - owned files
+dpkg -l gnome*                    # Find packages by name
+dpkg -p passwd                    # Package details
+dpkg-reconfigure -a               # Reconfigure after installation
+
+apt-cache madison <package>       # package from repository
+                                  # Find which packages are not from debian repos:
+for i in $(dpkg -l | awk '{print $2}'); do apt-cache madison $i; done |grep -v debian.org

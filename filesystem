@@ -1,0 +1,23 @@
+Filesystem:
+
+lsblk | grep sd                            # Show disks
+df -k
+df -h | grep sd                            # Volume usage
+
+ls -lahs                                   # List files in dir
+$ files=`ls`                               # Show the owners
+$ for file in $files; do owner=`stat -c %C $file`; echo $file $owner; done
+ls -1 | wc -l                              # Count files in Dir
+ls -l | grep -v ^l | wc -l                 # Without symlinks
+
+find /dir -printf '%u\n'                   # List owners %u group - %g
+find /dir -printf '%u\n' | sort -t: -u
+find /dir -printf '%u:%g\n' | sort -t: -u
+find /dir/data/* -type d -ctime +14        # files older than 14 day, next command will clean it
+find /dir/data/* -type d -ctime +14 -exec rm -rf {} \;
+
+du -sh /dir/name                           # Find the size of a directory
+du -h /dir/name | sort -rh | head -n 15    # Find 15 biggest files in direcorty
+
+yum -y install coreutils
+stat -c %U  <file>
