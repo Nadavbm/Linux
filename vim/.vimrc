@@ -1,6 +1,6 @@
 " VIM editor settings
 set encoding=utf-8
-syntax on
+syntax enable
 set showmode
 set showcmd
 set ttyfast
@@ -15,7 +15,8 @@ set shiftwidth=2
 set softtabstop=2
 
 " Colorize
-colorscheme desert  " Other options: gruvbox, onedark
+set background=dark
+colorscheme solarized  " Other options: desert, onedark
 " colorscheme C64
 
 " Vundle plugin manager
@@ -26,9 +27,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Add plugins here
-Plugin 'fatih/vim-go'
 "
-"
+Plugin 'altercation/vim-colors-solarized'
+" Plugin 'fatih/vim-go'
+" find plugin here: https://vimawesome.com/plugin
 
 call vundle#end()
 filetype plugin indent on
@@ -38,8 +40,34 @@ filetype plugin indent on
 
 
 
-" Some other options commented out:
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" Pathogen
+" execute pathogen#infect()
+
+
+
+" Some other options commented out:
 " set scrolloff=2
 " set autoindent
 " set expandtab
