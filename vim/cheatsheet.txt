@@ -1,0 +1,61 @@
+Movement
+========
+h,j,k,l				left,down,up,right
+w,W,3w,b,B,3b			forward next word,"",forward 3 words,backward word,"",backward 3 words
+gg,G,10gg,10G			Go to first line,"",go to 10th line,""
+0,$,^,M				Go to first char in line,end char in line,non black,middle screen
+fa,Fa,ta,Ta			go to next a in line,previous a in line,end of next a,end of previous a 
+
+screen move
+-----------
+ctrl-(d,f,e,u,b,y)		move half screen down,page down,one line down,half screen up,page up,one line up
+z,zt,zz,z-,zb			move current line to the top,without changing crusor location,current line to center of the screen, without cursor
+
+Search in Text
+==============
+/,?				Use n\N to next\previous match,backward match
+*,g*,#,g#			word under cursor,word under cursor partial match,backward exact math, backward partial
+/\<str\>,:set ignorecase 	Search for exact "str",ignore case sensitive
+
+Text Manipulation
+=================
+u,ctrl-r			Undo,Redo
+i,I,s,S,a,A			Insert mode,insert beginning of line,delete char,delete line,insert mode after cursor,insert below cursor line
+ma,d'a,:marks,'a		mark the line with name 'a',delete till line which marked 'a',show list of marks
+
+copy/paste/delete
+-----------------
+y,yiw,yw,yy,Y,y$		copy,copy word,copy word after cursor,copy line,"",copy until end of the line
+"+y,<F3>y			copy to clipboard
+p,P 				paste after cursor,paste before cursor
+<F3>p,ctrl-P,shift+insert	paste from clipboard
+<F3>yiw,<F3>yy,<F3>p		copy word,line to clipborad,paste from clipboard
+d<command>,diw,ciw,dw,cw	delete<command>,delete word,"",delete after cursor,"",delete word after cursor,""
+dd,cc,D,C,x,X			delete line,"",delete till end of line,"",delete char,""
+
+
+replace
+-------
+:s /str1/str2			replace str1 with str2
+:s /str1/str2/g			replace str1 with str2 in currnet line for all occurences 
+:1,6s /str1/str2		replace all occurences from line 1 till 6
+:%s /str1/str2/g		replace all occurences in file
+:s /\<str1>/str2		replace exact str1
+
+File operations
+===============
+:w,:sav,:q,:q!,:wq		write to file,save as,quit,force quit,save and quit
+:n,:vim *,:vim txt1 txt2	go to next file,open all files in dirctory,open txt1 and txt
+:bn,:bd,bd!			next buffer,close current without exit vim,""
+
+Split Windows
+=============
+:split,:split <filename>	split windows to two parts,open filename in split window
+:5 split <filename>,:new	open filename with 5 lines width new window,split to two while second widnows is blank
+ctrl-w j,ctrl-w k,ctrl-ww	go to below split windows,go to above,go tonext split window
+ctrl-w +,6 ctrl-w -		increase the width of split windows by one line,decrease by 5 lines
+ctrl-w =,ctrl-w _		all split windows in the same size,maximize current window size
+
+Plugins
+=======
+git clone https://github.com/VundleVim/Vundle.vim.git
