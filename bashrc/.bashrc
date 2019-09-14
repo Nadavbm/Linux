@@ -9,8 +9,8 @@ fi;
 
 
 if tput setaf 1 &> /dev/null; then
-	tput sgr0;	# Reset colors
-	bold=$(tput bold);
+	tput sgr0;	# Reset colors									  # tput - http://linuxcommand.org/lc3_adv_tput.php
+	bold=$(tput bold);											  
 	reset=$(tput sgr0);	
 	black=$(tput setaf 0);
 	blue=$(tput setaf 33);
@@ -37,7 +37,7 @@ else
 	yellow="\e[1;33m";
 fi;
 
-# PS1 is the prompt configuration and how it looks
+# PS1 is the prompt configuration and how it looks	   
 PS1="\[${bold}${yellow}\]\t ";
 PS1+="\[${red}\]\u"; # Set the Username in prompt
 PS1+="\[${white}\]@";
@@ -50,7 +50,7 @@ export PS1;
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
 
-export LS_COLORS='rs=0:di=01;32:ln=01;33:mh=00:pi=40;33'
+export LS_COLORS='rs=0:di=01;32:ln=01;33:mh=00:pi=40;33'		  # https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console
 
 alias vi=vim
 alias rm='rm -i'
