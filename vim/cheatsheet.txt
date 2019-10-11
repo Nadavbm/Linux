@@ -56,6 +56,13 @@ ctrl-w j,ctrl-w k,ctrl-ww	go to below split windows,go to above,go tonext split 
 ctrl-w +,6 ctrl-w -		increase the width of split windows by one line,decrease by 5 lines
 ctrl-w =,ctrl-w _		all split windows in the same size,maximize current window size
 
+NetRW
+=====
+:! ls -l			Can run commands here
+:find /path/file.txt		Open file from directory mode netrw
+:vs /path/file,:sp /file	Open in vertical split, open in horizonal split
+:tabnew /file 			Open new tab
+
 Plugins
 =======
 git clone https://github.com/VundleVim/Vundle.vim.git
