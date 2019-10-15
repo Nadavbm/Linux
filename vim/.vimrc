@@ -1,85 +1,33 @@
-" VIM editor settings
+" VIM editor default settings
 set encoding=utf-8
 syntax enable
 set showmode
 set showcmd
 set ttyfast
 
-" Edit, search and other options
-"set number
-set hlsearch
+" Use backspace between lines
+set backspace=indent,eol,start
 
-" Tab and space behavior
+" Search options
+set number
+"set hlsearch
+
+"Tab button behavior
 set tabstop=4
-set shiftwidth=2
-set softtabstop=2
+"set shiftwidth=2
+"set softtabstop=2
+
+" For Directory view in two splitted windows:
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
 
 " Colorize
 set background=dark
-colorscheme solarized  " Other options: desert, onedark
-" colorscheme C64
-
-" Vundle plugin manager
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-" Add plugins here
-"
-Plugin 'altercation/vim-colors-solarized'
-" Plugin 'fatih/vim-go'
-" find plugin here: https://vimawesome.com/plugin
-
-call vundle#end()
-filetype plugin indent on
-
-
-" Links:
-" https://www.youtube.com/watch?v=zF9EcpYb1KE
-" https://vimawesome.com/plugin/vim-go-sparks-fly
-" https://www.ostechnix.com/manage-vim-plugins-using-vundle-linux/
-" https://vimawesome.com/plugin/vim-colors-solarized-ours
-" https://github.com/mathiasbynens/dotfiles/blob/master/.bash_prompt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-" Pathogen
-" execute pathogen#infect()
-
-
-
-" Some other options commented out:
-" set scrolloff=2
-" set autoindent
-" set expandtab
-"highlight Comment ctermbg=DarkGray
-"highlight Constant ctermbg=Blue
-"highlight Normal ctermbg=Black
-"highlight NonText ctermbg=Black
-"highlight Special ctermbg=DarkMagenta
-"highlight Cursor ctermbg=Green
+colorscheme desert  " Other options: desert, onedark
